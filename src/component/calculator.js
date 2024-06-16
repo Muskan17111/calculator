@@ -17,6 +17,7 @@ const Calculator = () => {
 
     const evaluateExpression = (expression) => {
         try {
+            if (expression === '') return 'Error';
             const result = evaluate(expression);
             if (expression === '') return 'Error';
             if (result === Infinity) return 'Infinity';
