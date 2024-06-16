@@ -18,6 +18,7 @@ const Calculator = () => {
     const evaluateExpression = (expression) => {
         try {
             const result = evaluate(expression);
+            if (expression === '') return 'Error';
             if (result === Infinity) return 'Infinity';
             if (Number.isNaN(result)) return 'NaN';
             return result;
@@ -29,8 +30,8 @@ const Calculator = () => {
     const memoizedResult = useMemo(() => evaluateExpression(input), [input]);
 
     const calculateResult = () => {
-        if (memoizedResult === undefined || memoizedResult === 'Error') {
-            setOutput('Incomplete expression');
+        if (memoizedResult === undefined || memoizedResult === 'Error' || memoizedResult ==='') {
+            setOutput('Error');
         } else {
             setOutput(memoizedResult.toString());
         }
