@@ -9,7 +9,7 @@ const Calculator = () => {
     const appendValue = (value) => {
         setInput((prevInput) => prevInput + value);
     };
-
+    
     const clearInput = () => {
         setInput('');
         setOutput('');
@@ -29,20 +29,24 @@ const Calculator = () => {
     const memoizedResult = useMemo(() => evaluateExpression(input), [input]);
 
     const calculateResult = () => {
-        setOutput(memoizedResult.toString());
+        if (memoizedResult === undefined || memoizedResult === 'Error') {
+            setOutput('Invalid Expression');
+        } else {
+            setOutput(memoizedResult.toString());
+        }
     };
 
     return (
         <div className="calculator">
             <div>
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-            />
-            <div className="result">
-                {output}
-            </div>
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+                <div className="result">
+                    {output}
+                </div>
             </div>
             <div className="buttons">
                 {['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0', 'C', '=', '/'].map((button) => (
@@ -63,6 +67,7 @@ const Calculator = () => {
 };
 
 export default Calculator;
+
 
 
 
