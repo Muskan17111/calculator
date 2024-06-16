@@ -30,7 +30,7 @@ const Calculator = () => {
 
     const calculateResult = () => {
         if (memoizedResult === undefined || memoizedResult === 'Error') {
-            setOutput('Invalid Expression');
+            setOutput('Incomplete expression');
         } else {
             setOutput(memoizedResult.toString());
         }
