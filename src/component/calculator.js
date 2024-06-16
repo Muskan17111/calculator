@@ -17,6 +17,7 @@ const Calculator = () => {
 
     const evaluateExpression = (expression) => {
         try {
+            if (expression === '') return 'Error';
             const result = evaluate(expression);
             if (result === Infinity) return 'Infinity';
             if (Number.isNaN(result)) return 'NaN';
